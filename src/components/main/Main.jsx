@@ -11,6 +11,7 @@ function Main() {
     const [count, setCount] = useState(12)
     const [randomIndex, setRandomIndex] = useState(null)
     const [search, setSearch] = useState("")
+    const [isSearch, setIsSearch] = useState(false)
     const rand = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
 
 
@@ -28,8 +29,10 @@ function Main() {
     function getSearch(val) {
         if (val.trim().length === 0) {
             setData(random)
+            setIsSearch(false)
         }
         else {
+            setIsSearch(true)
             fetch(`https://restcountries.com/v3.1/name/${val}?fields=name,cca3,capital,region,borders,area,flags,population`)
                 .then(res => res.json())
                 .then(result => {
@@ -46,13 +49,13 @@ function Main() {
         <main className="dark:bg-gray-100">
             <section className="py-6 sm:py-12  dark:text-gray-800">
                 <div className="overflow-hidden max-w-[400px] mx-auto">
-                    <Search getSearch={getSearch} />
+                    <Search getSearch={getSearch} setIsSearch={setIsSearch} />
                 </div>
                 <div className="container p-6 mx-auto space-y-8">
                     <div className="space-y-2 text-center">
                         <h2 className="text-3xl font-bold">CountryApp</h2>
                     </div>
-                    {search.length > 0 && randomIndex !== null && (
+                    {!isSearch && randomIndex !== null && (
                         <RandomCard {...random[randomIndex]} />
                     )}
                     <div id="content" className="grid grid-cols-1 gap-x-4 gap-y-8 md:grid-cols-2 lg:grid-cols-4">
