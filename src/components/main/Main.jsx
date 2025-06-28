@@ -34,6 +34,7 @@ function Main() {
                 <div className="container p-6 mx-auto space-y-8">
                     <div className="space-y-2 text-center">
                         <h2 className="text-3xl font-bold">CountryApp</h2>
+                        <h4>Ölkələrin bayraqları, əhalisi və coğrafiyası buradadır.</h4>
                     </div>
                     <RandomCard {...data[randomIndex]} />
                     <div id="content" className="grid grid-cols-1 gap-x-4 gap-y-8 md:grid-cols-2 lg:grid-cols-4">
