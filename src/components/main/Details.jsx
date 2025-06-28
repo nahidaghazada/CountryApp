@@ -36,7 +36,6 @@ function Details() {
                             )
                             )}
                         </div>
-
                     </div>
                 </a>
             </div>
