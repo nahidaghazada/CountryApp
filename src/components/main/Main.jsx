@@ -14,23 +14,6 @@ function Main() {
     const rand = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
 
 
-    // useEffect(() => {        
-
-    // }, [])
-
-    // useEffect(() => {
-    //     scrollTop(10, true)
-    // }, [count])
-
-    // useEffect(() => {
-    //     if (search.trim().length > 1) {            
-    //         
-    //     } else  {
-    //         setSearchData(data)
-    //     }
-
-    // }, [search])
-
     useEffect(() => {
         fetch("https://restcountries.com/v3.1/all?fields=name,cca3,capital,region,borders,area,flags,population")
             .then(res => res.json())
@@ -46,12 +29,12 @@ function Main() {
         if (val.trim().length === 0) {
             setData(random)
         }
-        else{
+        else {
             fetch(`https://restcountries.com/v3.1/name/${val}?fields=name,cca3,capital,region,borders,area,flags,population`)
-            .then(res => res.json())
-            .then(result => {
-                setData(result)
-            })
+                .then(res => res.json())
+                .then(result => {
+                    setData(result)
+                })
         }
     }
 
