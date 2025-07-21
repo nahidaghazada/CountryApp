@@ -4,6 +4,7 @@ import RandomCard from "./RandomCard"
 import { Pagination } from "antd"
 import { scrollTop } from "../utility/scrollTop"
 import Search from "../search/Search"
+import { getAllCountry } from "../../services"
 
 function Main() {
     const [data, setData] = useState([])
@@ -16,8 +17,7 @@ function Main() {
 
 
     useEffect(() => {
-        fetch("https://restcountries.com/v3.1/all?fields=name,cca3,capital,region,borders,area,flags,population")
-            .then(res => res.json())
+        getAllCountry()
             .then(result => {
                 setData(result)
                 setRandom(result)
@@ -33,8 +33,7 @@ function Main() {
         }
         else {
             setIsSearch(true)
-            fetch(`https://restcountries.com/v3.1/name/${val}?fields=name,cca3,capital,region,borders,area,flags,population`)
-                .then(res => res.json())
+            getSearch(val)
                 .then(result => {
                     setData(result)
                 })
