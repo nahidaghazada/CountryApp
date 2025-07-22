@@ -4,7 +4,7 @@ import RandomCard from "./RandomCard"
 import { Pagination } from "antd"
 import { scrollTop } from "../utility/scrollTop"
 import Search from "../search/Search"
-import { getAllCountry } from "../../services"
+import { getAllCountry, getSearch as searchCountry } from "../../services"
 
 function Main() {
     const [data, setData] = useState([])
@@ -33,9 +33,13 @@ function Main() {
         }
         else {
             setIsSearch(true)
-            getSearch(val)
+            searchCountry(val)
                 .then(result => {
                     setData(result)
+                })
+                .catch(error => {
+                    console.error("Axtarış səhvi:", error)
+                    setData([])
                 })
         }
     }
@@ -67,7 +71,7 @@ function Main() {
             </section>
             <Pagination onChange={(page, pageSize) => {
                 setCount(page * pageSize)
-                scrollTopByElement("content")
+                scrollTop("content")
             }}
                 pageSize={12} align="center" defaultCurrent={1} total={data.length} />
         </main>

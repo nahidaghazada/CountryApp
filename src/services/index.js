@@ -7,7 +7,8 @@ export async function getAllCountry() {
         const res = await instance.get(`/all?fields=${fields}`)
         return res.data
     } catch (error) {
-        alert(error)
+       console.error("Bütün ölkələri əldə etmək səhvi:", error.message, error.response?.status);
+        return [];
     }
 }
 
@@ -16,6 +17,7 @@ export async function getSearch(val) {
         const res = await instance.get(`/name/${val}?fields=${fields}`)
         return res.data
     } catch (error) {
-        alert(error)
+      console.error("Axtarış zamanı səhv:", error.message, error.response?.status);
+        return [];
     }
 }

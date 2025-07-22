@@ -7,6 +7,6 @@ export const instance = axios.create({
     timeout: 4000,
     headers: {
         'Content-Type': "application/json",
-        'Authorization': localStorage.getItem("token")
+        'Authorization': localStorage.getItem("token") || ""
     }
 })
